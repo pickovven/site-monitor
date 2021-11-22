@@ -6,14 +6,8 @@ import commandRouter from './api/controllers/command.js'
 
 const server = express()
 server.use(express.json());
-const hostname = '127.0.0.1';
-const port = 3000;
 const slackToken = process.env.SLACKBOT_TOKEN;
 server.use('/api/commands', commandRouter)
-
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
 
 async function run() {
   const url = 'https://hooks.slack.com/services/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';
