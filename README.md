@@ -4,6 +4,13 @@ Setup website monitoring from within Slack
 
 ## First Time Setup
 
+### Prerequisites
+1. Install PSQL
+2. Install NPM
+3. Setup a slackbot
+
+### Getting Started
+
 1. `git clone git@github.com:pickovven/site-monitor.git` 
 2. Setup a psql DB with the name "sites". Example for linux: `sudo -u postgres psql -c "CREATE DATABASE sites;"`
 3. Start the psql server `sudo service postgresql start`
@@ -12,7 +19,7 @@ Setup website monitoring from within Slack
 SLACKBOT_TOKEN="{enter token}"
 DATABASE_URL="postgresql://{PSQL Username}:{PSQL Password}@{HOST}:{PORT}/{DB NAME}?schema=public"
 ```
-5. Replace the databse and slackbot information with your environments setup
+5. Replace the databse and slackbot information with your environment's setup
 6. run `npm install`
 7. run `npm start`
 
