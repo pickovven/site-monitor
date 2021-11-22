@@ -15,19 +15,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("dotenv");
 const axios_1 = __importDefault(require("axios"));
 const express_1 = __importDefault(require("express"));
+const express_2 = __importDefault(require("express"));
 const command_js_1 = __importDefault(require("./api/controllers/command.js"));
 const server = (0, express_1.default)();
 server.use(express_1.default.json());
+server.use(express_2.default.json()); // support json encoded bodies
+server.use(express_2.default.urlencoded({ extended: true })); // support encoded bodies
 const slackToken = process.env.SLACKBOT_TOKEN;
 server.use('/api/commands', command_js_1.default);
 const hostname = '127.0.0.1';
-let port;
-if (process.env.PORT) {
-    port = parseInt(process.env.PORT);
-}
-else {
-    port = 3000;
-}
+const port = 3000;
 server.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
 });

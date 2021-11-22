@@ -1,32 +1,31 @@
-import { PrismaClient } from '@prisma/client'
 import { Request, Response } from 'express';
+import AddSite from '../../functions/AddSite';
+import CheckSite from '../../functions/CheckSite';
+import CheckAllSites from '../../functions/CheckAllSites';
 
-const prisma = new PrismaClient()
+/*
+	Application currently supports two commands
+	1. /monitor -- add URLs to the monitoring databse
+	2. /check -- test that a URL is live
+*/
 
 const commandController = async (req: Request, res: Response) => {
-	if(req.method == "POST")
-		{
-			res.send("POST new permit")
-			const url = req.body?.url
-			const name = req.body?.name
-			const frequency = req.body?.frequency ?? 6000
-			if (url) {
-				const site = await prisma.site.create({
-					data: {
-						url: url,
-						frequency: frequency,
-						name: name
-					},
-				})
-			} 
-			else {
-				res.send("URL is a required parameter")
+	if(req.method == "POST") {	
+		if (req.body.command == "/monitor") {
+			AddSite(req, res)
+		} else if(req.body.command == "/check") {
+			if(req.body.text) {
+				CheckSite(req,res)
+			} else if(!req.body.text || req.body.text == "all") {
+				CheckAllSites(req,res)
 			}
-			
+		} else {
+			res.send("You must pass a POST request.");
 		}
+	}
 	else
 		{
-			res.end("Undefined request .");
+			res.send("You must pass a POST request.");
 		}
 };
 
