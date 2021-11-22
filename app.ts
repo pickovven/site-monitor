@@ -1,11 +1,15 @@
 import 'dotenv';
 import axios from 'axios';
 import express from 'express';
+import commandRouter from './api/controllers/command.js'
+
 
 const server = express()
+server.use(express.json());
 const hostname = '127.0.0.1';
 const port = 3000;
 const slackToken = process.env.SLACKBOT_TOKEN;
+server.use('/api/commands', commandRouter)
 
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
