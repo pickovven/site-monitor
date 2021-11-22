@@ -8,6 +8,7 @@ Setup website monitoring from within Slack
 1. Install PSQL
 2. Install NPM
 3. Setup a slackbot
+4. If deploying locally, you may need to use [ngrok](https://slack.dev/node-slack-sdk/tutorials/local-development#using-a-local-request-URL-for-development)
 
 ### Getting Started
 
