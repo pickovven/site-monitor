@@ -8,8 +8,10 @@ Setup website monitoring from within Slack
 2. Setup a psql DB with the name "sites". Example for linux: `sudo -u postgres psql -c "CREATE DATABASE sites;"`
 3. Start the psql server `sudo service postgresql start`
 4. Create an `.env` file in the project root folder and add the following:
-```SLACKBOT_TOKEN="{enter token}"
-DATABASE_URL="postgresql://{PSQL Username}:{PSQL Password}@{HOST}:{PORT}/{DB NAME}?schema=public"```
+```
+SLACKBOT_TOKEN="{enter token}"
+DATABASE_URL="postgresql://{PSQL Username}:{PSQL Password}@{HOST}:{PORT}/{DB NAME}?schema=public"
+```
 5. Replace the databse and slackbot information with your environments setup
 6. run `npm install`
 7. run `npm start`
