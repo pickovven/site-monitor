@@ -11,7 +11,7 @@ server.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 const slackToken = process.env.SLACKBOT_TOKEN;
 server.use('/api/commands', commandRouter)
 
-const hostname = '127.0.0.1';
+const hostname = 'localhost';
 const port = 3000;
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
